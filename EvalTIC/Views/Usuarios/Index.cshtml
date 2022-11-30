@@ -1,0 +1,56 @@
+﻿<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+@model IEnumerable<EvalTIC.Models.Usuario>
+@{
+    ViewData["Title"] = "Lista de Usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-4">
+        <h3>Lista de Usuarios</h3>
+    </div>
+     <div class="col-3">
+         <a asp-action="Crear" class="btn btn-primary form-control"> <i class="bi bi-person-fill"></i> Crear Usuario</a>
+    </div>    
+</div>
+
+<div>
+    @if (Model.Count()>0)
+    {
+        <table class="table table-striped border">
+            <tr>
+                <th>@Html.DisplayNameFor(u=>u.UsuarioId)</th>
+                <th>@Html.DisplayNameFor(u=>u.Nombre)</th>
+                <th>@Html.DisplayNameFor(u=>u.Apellido)</th>
+                <th>@Html.DisplayNameFor(u=>u.RolId)</th>
+                <th>@Html.DisplayNameFor(u=>u.Correo)</th>
+                <th>@Html.DisplayNameFor(u=>u.Telefono)</th>
+            </tr>
+                @foreach (var Usuario in Model)
+                {
+                    <tr>
+                        <td>@Usuario.UsuarioId</td>
+                        <td>@Usuario.Nombre</td>
+                        <td>@Usuario.Apellido</td>
+                        <td>@Usuario.Rol.Descripcion</td>
+                        <td>@Usuario.Correo</td>
+                        <td>@Usuario.Telefono</td>
+                        <td>
+                            <a class="btn btn-primary text-white" asp-action="Editar" asp-route-id="@Usuario.UsuarioId"><i class="bi bi-pencil-fill"></i>  Editar</a>
+                            <a class="btn btn-danger text-white" asp-action="Borrar" asp-route-id="@Usuario.UsuarioId"><i class="bi bi-trash3-fill"></i>  Borrar</a>
+                        </td>
+                    </tr>
+                    
+                }
+        </table>
+    }
+    else
+    {
+        <p>No hay Usuario para Mostrar</p>
+    }
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>

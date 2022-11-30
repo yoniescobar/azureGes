@@ -1,0 +1,160 @@
+﻿<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+
+@model EvalTIC.ViewModels.RolesUsuariosVM
+
+@{
+    ViewData["Title"] = "Crear Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+
+
+<br />
+<br />
+<h3 class="text-center">Crear una Nuevo Usuario</h3>
+
+<form method="post" asp-action="Crear">
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-12 mt-4">
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Usuario.Nombre"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Usuario.Nombre" class="form-control" />
+                    <span asp-validation-for="Usuario.Nombre" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 mt-4">
+        <div class="row">
+            <div class="col-4">
+                <label asp-for="Usuario.Apellido"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="Usuario.Apellido" class="form-control" />
+                <span asp-validation-for="Usuario.Apellido" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 mt-4">
+        <div class="row">
+            <div class="col-4">
+                <label asp-for="Usuario.Telefono"></label>
+            </div>
+            <div class="col-8">
+                <input type="number" asp-for="Usuario.Telefono" class="form-control" />
+                <span asp-validation-for="Usuario.Telefono" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 mt-4">
+        <div class="row">
+            <div class="col-4">
+                <label asp-for="Usuario.Direccion"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="Usuario.Direccion" class="form-control" />
+                <span asp-validation-for="Usuario.Direccion" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 mt-4">
+        <div class="row">
+            <div class="col-4">
+                <label asp-for="Usuario.Correo"></label>
+            </div>
+            <div class="col-8">
+                <input type="email" asp-for="Usuario.Correo" class="form-control" id=email />
+                <span asp-validation-for="Usuario.Correo" class="text-danger"></span>
+                @if (ViewData["MensajeError"] != null)
+                {
+                    <span class="text-danger">
+                        @ViewData["MensajeError"]
+                    </span>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 mt-4 ">
+        <div class="row">
+            <div class="col-4">
+                <label asp-for="Usuario.FechaNac"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="Usuario.FechaNac" class="form-control" />
+                <span asp-validation-for="Usuario.FechaNac" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-12 mt-4 ">
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Usuario.RolId">Tipo Usuario</label>
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(u => u.Usuario.RolId, Model.ListaUsuarios, "--Lista de Roles--",
+                    new {@class = "form-control"})
+                    <span asp-validation-for="Usuario.RolId" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 mt-4">
+        <div class="row">
+            <div class="col-4">
+                <label asp-for="Usuario.Activo"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="Usuario.Activo" class="form-control" />
+                <span asp-validation-for="Usuario.Activo" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 mt-4">
+        <div class="row">
+            <div class="col-4">
+                <label asp-for="Usuario.Contrasenia"></label>
+            </div>
+            <div class="col-8">
+                <input type="password" asp-for="Usuario.Contrasenia" class="form-control" />
+                <span asp-validation-for="Usuario.Contrasenia" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row mt-4">
+        <div class="col-3">
+            <a asp-action="Index">Volver a lista</a>
+        </div>
+        <div class="col-5 offset-4">
+            <button type="submit" class="btn btn-primary form-control"><i class="bi bi-person-fill"></i> Crear</button>
+            &nbsp;
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}
+
+ <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
